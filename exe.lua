@@ -76,4 +76,4 @@ local function sendToDiscord(message)
 end
 
 -- Eksekusi notifikasi saat script dijalankan
-sendToDiscord("Notifikasi executor Roblox berhasil dikirim!")
+sendToDiscord("New Execute! ")
