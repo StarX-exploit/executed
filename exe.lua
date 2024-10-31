@@ -36,6 +36,16 @@ elseif trigon then
     executor = "Trigon"
 elseif MantiPWF then
     executor = "MantiPWF"
+elseif Zorara then
+    executor = "Zorara"
+elseif Nezur then
+    executor = "Nezur"
+elseif AppleWare then
+    executor = "AppleWare"
+elseif Macsploit then
+    executor = "Macsploit is best tbh"
+elseif Xeno then
+    executor = "Xeno"
 else
     -- Alternatif: Jika ada fungsi umum seperti identifyexecutor atau getexecutorname
     if identifyexecutor then
@@ -58,10 +68,10 @@ local function sendToDiscord(message)
         ["embeds"] = {{
             ["title"] = "Roblox Executor Notification",
             ["fields"] = {
-                {["name"] = "User:", ["value"] = username, ["inline"] = true},
-                {["name"] = "User ID:", ["value"] = tostring(userId), ["inline"] = true},
-                {["name"] = "User Age:", ["value"] = tostring(accountAge), ["inline"] = true},
-                {["name"] = "Executor", ["value"] = executor, ["inline"] = true}
+                {["name"] = "User:", ["value"] = username, ["inline"] = false},
+                {["name"] = "User ID:", ["value"] = tostring(userId), ["inline"] = false},
+                {["name"] = "User Age:", ["value","days"] = tostring(accountAge), ["inline"] = false},
+                {["name"] = "Executor", ["value"] = executor, ["inline"] = false}
             },
             ["color"] = 16711680 -- Warna merah
         }}
