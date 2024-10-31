@@ -70,7 +70,7 @@ local function sendToDiscord(message)
             ["fields"] = {
                 {["name"] = "User:", ["value"] = username, ["inline"] = false},
                 {["name"] = "User ID:", ["value"] = tostring(userId), ["inline"] = false},
-                {["name"] = "User Age:", ["value","days"] = tostring(accountAge), ["inline"] = false},
+                {["name"] = "User Age:", ["value"] = tostring(accountAge), ["inline"] = false},
                 {["name"] = "Executor", ["value"] = executor, ["inline"] = false}
             },
             ["color"] = 16711680 -- Warna merah
