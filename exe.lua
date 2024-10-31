@@ -46,6 +46,8 @@ elseif Macsploit then
     executor = "Macsploit is best tbh"
 elseif Xeno then
     executor = "Xeno"
+elseif Avernus then
+    executor = "Avernus"
 else
     -- Alternatif: Jika ada fungsi umum seperti identifyexecutor atau getexecutorname
     if identifyexecutor then
@@ -77,13 +79,19 @@ local function sendToDiscord(message)
         }}
     }
 
-    request({
+    local response = request({
         Url = webhookURL,
         Method = "POST",
         Headers = {["Content-Type"] = "application/json"},
         Body = game:GetService("HttpService"):JSONEncode(data)
     })
+
+    if response.Success then
+        print("Pesan berhasil dikirim!")
+    else
+        warn("Gagal mengirim pesan: ", response.StatusCode, response.StatusMessage)
+    end
 end
 
 -- Eksekusi notifikasi saat script dijalankan
-sendToDiscord("New Execute! ")
+sendToDiscord("New Execute!")
