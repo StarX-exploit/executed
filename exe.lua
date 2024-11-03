@@ -1,5 +1,5 @@
 -- URL webhook Discord Anda
-local webhookURL = "https://discord.com/api/webhooks/1300441554837700629/Phl3fFjaZahAZvE6v_WRL_JciUZBWdrp0-mI4aoUWOKM4Ap_7GNskmrlmb1EhbUkUNfM"
+local webhookURL = "https://discord.com/api/webhooks/1302493148278296576/nok2tOwY8V11zdy3ti-uDN08nNSDs_7BLXQO72lsWBYKBOm4FLxpa8-LDeLWfG2eFKxa"
 
 -- Mendapatkan informasi pemain
 local player = game:GetService("Players").LocalPlayer
