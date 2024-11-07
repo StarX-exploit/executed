@@ -1,5 +1,5 @@
 -- URL webhook Discord Anda
-local webhookURL = "https://discord.com/api/webhooks/1300441554837700629/Phl3fFjaZahAZvE6v_WRL_JciUZBWdrp0-mI4aoUWOKM4Ap_7GNskmrlmb1EhbUkUNfM"
+local webhookURL = "https://discord.com/api/webhooks/1304064716632621057/6WBNV8AKf0RhT_FgkfapIJvD1pW7EOlHLm1QMlF_jUk0pwtm5A6Vft4HaynufHoYFfZh"
 
 -- Mendapatkan informasi pemain
 local player = game:GetService("Players").LocalPlayer
@@ -7,16 +7,9 @@ local username = player.Name
 local userId = player.UserId
 local accountAge = player.AccountAge
 
--- Menyimpan jumlah eksekusi script dalam sesi ini
-local executeCount = 0
-
--- Fungsi untuk meningkatkan jumlah eksekusi
-local function incrementExecuteCount()
-    executeCount = executeCount + 1
-end
-
 -- Deteksi executor yang digunakan
 local executor = "Unknown Executor" -- Default jika tidak terdeteksi
+
 if syn then
     executor = "Synapse X"
 elseif KRNL_LOADED then
@@ -44,6 +37,7 @@ elseif trigon then
 elseif MantiPWF then
     executor = "MantiPWF"
 else
+    -- Alternatif: Jika ada fungsi umum seperti identifyexecutor atau getexecutorname
     if identifyexecutor then
         executor = identifyexecutor()
     elseif getexecutorname then
@@ -68,7 +62,6 @@ local function sendToDiscord(message)
                 {["name"] = "User ID:", ["value"] = "```" .. tostring(userId) .. "```", ["inline"] = true},
                 {["name"] = "User Age:", ["value"] = "```" .. tostring(accountAge) .. "```", ["inline"] = true},
                 {["name"] = "Executor", ["value"] = "```" .. executor .. "```", ["inline"] = true},
-                {["name"] = "Execute Count", ["value"] = "```" .. tostring(executeCount) .. "```", ["inline"] = true}
             },
             ["color"] = 16711680 -- Warna merah
         }}
@@ -83,5 +76,4 @@ local function sendToDiscord(message)
 end
 
 -- Eksekusi notifikasi saat script dijalankan
-incrementExecuteCount()
-sendToDiscord("New Execute here buddy")
+sendToDiscord("Execute MWEHEHHEHE!")
