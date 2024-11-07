@@ -1,5 +1,5 @@
 -- URL webhook Discord Anda
-local webhookURL = "https://discord.com/api/webhooks/1302493148278296576/nok2tOwY8V11zdy3ti-uDN08nNSDs_7BLXQO72lsWBYKBOm4FLxpa8-LDeLWfG2eFKxa"
+local webhookURL = "https://discord.com/api/webhooks/1300441554837700629/Phl3fFjaZahAZvE6v_WRL_JciUZBWdrp0-mI4aoUWOKM4Ap_7GNskmrlmb1EhbUkUNfM"
 
 -- Mendapatkan informasi pemain
 local player = game:GetService("Players").LocalPlayer
@@ -7,12 +7,16 @@ local username = player.Name
 local userId = player.UserId
 local accountAge = player.AccountAge
 
--- Mendapatkan JobID server saat ini
-local jobId = game.JobId
+-- Menyimpan jumlah eksekusi script dalam sesi ini
+local executeCount = 0
+
+-- Fungsi untuk meningkatkan jumlah eksekusi
+local function incrementExecuteCount()
+    executeCount = executeCount + 1
+end
 
 -- Deteksi executor yang digunakan
 local executor = "Unknown Executor" -- Default jika tidak terdeteksi
-
 if syn then
     executor = "Synapse X"
 elseif KRNL_LOADED then
@@ -39,20 +43,7 @@ elseif trigon then
     executor = "Trigon"
 elseif MantiPWF then
     executor = "MantiPWF"
-elseif Zorara then
-    executor = "Zorara"
-elseif Nezur then
-    executor = "Nezur"
-elseif AppleWare then
-    executor = "AppleWare"
-elseif Macsploit then
-    executor = "Macsploit"
-elseif Xeno then
-    executor = "Xeno"
-elseif Avernus then
-    executor = "Avernus"
 else
-    -- Alternatif: Jika ada fungsi umum seperti identifyexecutor atau getexecutorname
     if identifyexecutor then
         executor = identifyexecutor()
     elseif getexecutorname then
@@ -73,29 +64,24 @@ local function sendToDiscord(message)
         ["embeds"] = {{
             ["title"] = "Roblox Executor Notification",
             ["fields"] = {
-                {["name"] = "User:", ["value"] = username, ["inline"] = false},
-                {["name"] = "User ID:", ["value"] = tostring(userId), ["inline"] = false},
-                {["name"] = "User Age:", ["value"] = tostring(accountAge), ["inline"] = false},
-                {["name"] = "Executor:", ["value"] = executor, ["inline"] = false},
-                {["name"] = "Job ID:", ["value"] = jobId, ["inline"] = false} -- Menambahkan informasi JobID
+                {["name"] = "User:", ["value"] = "```" .. username .. "```", ["inline"] = true},
+                {["name"] = "User ID:", ["value"] = "```" .. tostring(userId) .. "```", ["inline"] = true},
+                {["name"] = "User Age:", ["value"] = "```" .. tostring(accountAge) .. "```", ["inline"] = true},
+                {["name"] = "Executor", ["value"] = "```" .. executor .. "```", ["inline"] = true},
+                {["name"] = "Execute Count", ["value"] = "```" .. tostring(executeCount) .. "```", ["inline"] = true}
             },
             ["color"] = 16711680 -- Warna merah
         }}
     }
 
-    local response = request({
+    request({
         Url = webhookURL,
         Method = "POST",
         Headers = {["Content-Type"] = "application/json"},
         Body = game:GetService("HttpService"):JSONEncode(data)
     })
-
-    if response.Success then
-        print("Pesan berhasil dikirim!")
-    else
-        warn("Gagal mengirim pesan: ", response.StatusCode, response.StatusMessage)
-    end
 end
 
 -- Eksekusi notifikasi saat script dijalankan
-sendToDiscord("New Execute!")
+incrementExecuteCount()
+sendToDiscord("New Execute here buddy")
