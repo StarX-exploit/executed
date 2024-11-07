@@ -45,6 +45,8 @@ else
     end
 end
 
+local jobId = game.JobId or "Unknown Job ID"
+
 -- Fungsi untuk mengirim notifikasi ke Discord
 local function sendToDiscord(message)
     local request = http_request or request or syn.request or http.request
@@ -58,10 +60,11 @@ local function sendToDiscord(message)
         ["embeds"] = {{
             ["title"] = "Roblox Executor Notification",
             ["fields"] = {
-                {["name"] = "User:", ["value"] = "```" .. username .. "```", ["inline"] = true},
-                {["name"] = "User ID:", ["value"] = "```" .. tostring(userId) .. "```", ["inline"] = true},
-                {["name"] = "User Age:", ["value"] = "```" .. tostring(accountAge) .. "```", ["inline"] = true},
-                {["name"] = "Executor", ["value"] = "```" .. executor .. "```", ["inline"] = true},
+                {["name"] = "User:", ["value"] = "```" .. username .. "```", ["inline"] = false},
+                {["name"] = "User ID:", ["value"] = "```" .. tostring(userId) .. "```", ["inline"] = false},
+                {["name"] = "User Age:", ["value"] = "```" .. tostring(accountAge) .. "```", ["inline"] = false},
+                {["name"] = "Executor", ["value"] = "```" .. executor .. "```", ["inline"] = false},
+                {["name"] = "Job ID:", ["value"] = "```" .. jobId .. "```", ["inline"] = false}
             },
             ["color"] = 16711680 -- Warna merah
         }}
